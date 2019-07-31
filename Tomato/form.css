@@ -1,0 +1,17 @@
+.d-flex.justify-content-center {
+    margin-top: 20px;
+    color: orange;
+  }
+  
+  .card-header {
+    font-size: 20pt;
+  }
+
+  .headerWelcome {
+      color: orange;
+  }
+
+  #invalid-feedback1, #invalid-feedback2, #invalid-feedback3, #invalid-feedback5, #invalid-feedback6 {
+      font-size: 8pt;
+      color: red;
+  }

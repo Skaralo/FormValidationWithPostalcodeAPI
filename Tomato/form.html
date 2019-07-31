@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+          
+        
+        <link rel="stylesheet" type="text/css" href="form.css">
+                <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+       
+        
+        
+        <title>Form Validation and postal code API</title>
+        
+
+    </head>
+
+<body>
+   
+    <br><br>
+  <div class="d-flex justify-content-center">
+        <div class="card border-info mb-3" style="max-width: 60rem;">
+            <div class="card-header">Form Validation and postal code API</div>
+            <div class="card-body text-info">
+            <h5 class="card-title">Adres formulier</h5>
+                  
+                <form class="formIncentro" method="post" action="welkom.html" onsubmit="return checkforblank()" >
+                    <div class="form-row" style="max-width: 60rem;">
+                        <div class="col-md-4 mb-3">
+                        <label for="validationCustom01">First Name</label>
+                        <input type="text" class="form-control" id="validationCustom01" name="voornaam" placeholder="Mickey">
+                            <div id="invalid-feedback1"></div>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label for="validationCustom011">Prefix</label>
+                            <input type="text" class="form-control" id="validationCustom011">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="validationCustom02">Last Name</label>
+                            <input type="text" class="form-control" id="validationCustom02" placeholder="Mouse">
+                            <div id="invalid-feedback2"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3" style="max-width: 90rem;">
+                            <label for="validationCustom03">E-mail</label>
+                            <input type="email" class="form-control" id="validationCustom03" placeholder="E-mail">
+                            <div id="invalid-feedback3"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-7 mb-3" style="max-width: 60rem;">
+                            <label for="validationCustom05">Postal Code</label>
+                            <input type="text" class="form-control" id="validationCustom05" placeholder="Postal Code">
+                            <div id="invalid-feedback5"></div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="validationCustom06">Number</label>
+                            <input type="text" class="form-control" id="validationCustom06" placeholder="Number">
+                            <div id="invalid-feedback6"></div>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label for="validationCustom04">Annex</label>
+                            <input type="text" class="form-control" id="validationCustom04" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row" style="max-width: 60rem;">
+                        <div class="col-md-7 mb-3">
+                            <label for="validationCustom07">Street</label>
+                            <input get
+                            type="text" class="form-control" id="validationCustom07" placeholder="Street">
+                            <div id="invalid-feedback7"></div>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label for="validationCustom08">City</label>
+                            <input type="text" class="form-control" id="validationCustom08" placeholder="City">
+                            <div id="invalid-feedback8"></div>
+                        </div>
+                    </div>
+                    <button input class="btn btn-primary" type="submit">Submit</button>
+            <!-- </div>
+        </div> -->
+                        
+                </form>
+                  
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="api.js"></script>
+    <script>
+        function checkforblank() {
+
+            document.getElementById("invalid-feedback1").innerHTML = "";
+            document.getElementById("validationCustom01").style.borderColor = "#ced4da";
+
+            document.getElementById("invalid-feedback2").innerHTML = "";
+            document.getElementById("validationCustom02").style.borderColor = "#ced4da";
+
+            document.getElementById("invalid-feedback3").innerHTML = "";
+            document.getElementById("validationCustom03").style.borderColor = "#ced4da";
+
+            document.getElementById("invalid-feedback5").innerHTML = "";
+            document.getElementById("validationCustom05").style.borderColor = "#ced4da";
+
+            document.getElementById("invalid-feedback6").innerHTML = "";
+            document.getElementById("validationCustom06").style.borderColor = "#ced4da";
+
+            var errormessage = "";
+
+          if(document.getElementById("validationCustom01").value == "") {
+            errormessage = "Voer a.u.b. uw voornaam in.";
+            document.getElementById("invalid-feedback1").innerHTML=errormessage;
+              document.getElementById("validationCustom01").style.borderColor = "red";
+          }
+
+          if(document.getElementById("validationCustom02").value == "") {
+            errormessage = "Voer a.u.b. uw achternaam in.";
+            document.getElementById("invalid-feedback2").innerHTML=errormessage;
+              document.getElementById("validationCustom02").style.borderColor = "red";
+          }
+          var email = document.getElementById("validationCustom03").value;
+          var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+          if(!email.match(mailformat) || email == "") {
+              errormessage = "Voer a.u.b. een geldig email adres in.";
+              document.getElementById("invalid-feedback3").innerHTML=errormessage;
+              document.getElementById("validationCustom03").style.borderColor = "red";
+          }            
+          var zipcode = document.getElementById("validationCustom05").value;
+          var zipcodeformat = /^[1-9][0-9]{3} ?(?!sa|sd|ss)[a-z]{2}$/i;
+          if(!zipcode.match(zipcodeformat) || zipcode == "") {
+              errormessage = "Voer a.u.b. een geldige postcode in.";
+              document.getElementById("invalid-feedback5").innerHTML=errormessage;
+              document.getElementById("validationCustom05").style.borderColor = "red";
+          }
+          var houseNumber = document.getElementById("validationCustom06").value;
+          var houseNumberFormat = /^(?=.*\d)[\d ]+$/;
+          if(!houseNumber.match(houseNumberFormat)) {
+              errormessage = "Voer a.u.b. uw huisnummer in (zonder toevoeging)";
+              document.getElementById("invalid-feedback6").innerHTML=errormessage;
+              document.getElementById("validationCustom06").style.borderColor = "red";
+          }
+
+          if(errormessage != "") {
+              alert("Controleer de velden");
+              return false;
+          }
+        }
+    </script>
+            
+</body>
+</html>
